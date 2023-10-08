@@ -1,77 +1,62 @@
 ﻿@using NevaNetCore.Models
 @model ConnectionSettings
 
-<link rel="stylesheet" href="~/css/Style.css">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 @{
     ViewData["Title"] = "Neva";
 }
 
 <form method="post" asp-action="Index">
-<div class="d-block">
+ <div>
     <div>
         <div class="py-3 border border-secondary">
-        Устройство
+            <p class="fw-bold px-1">Устройство</p>
             <div class="container-xl">
-                <label class="col-form-label">Модель:</label>
-            <select id="selectID">
-                <option value=”GR”>Автоматически</option>
-                <option value=”YE”>НЕВА-03-Ф</option>
-            </select>
-        </div>
+                <label class="col-form-label" >Модель:</label>
+                    <select id="selectID" asp-for="LIBFPTR_SETTING_MODEL">
+                        <option value=”LIBFPTR_MODEL_NEVA_AUTO”>Автоматически</option>
+                        <option value=”LIBFPTR_MODEL_NEVA_3F”>НЕВА-03-Ф</option>
+                    </select>
+            </div>
 
+        </div>
     </div>
+        <div class="py-2 border border-secondary ">
+            <div class="py-2">
+                <p class="fw-bold px-1">Параметры подключения к ККТ</p>
+                <div class="container-xl">
+                    <label class="col-form-label">Канал связи:</label>
+                    <select class="Element" id="selectID" asp-for="LIBFPTR_SETTING_PORT">
+
+                        <option value=”0”>COM / VCOM</option>
+                        <option value=”2”>TCP / IP</option>
+
+                    </select>
+                </div>
+                <div class="container-xl d-inline-block">
+                    <label class="col-form-label">COM порт:</label>
+                    <input type="text" name="LIBFPTR_SETTING_COM_FILE" placeholder="COM 1" size="18" asp-for="LIBFPTR_SETTING_COM_FILE" />
+
+                <div class="container-xl d-inline-block p-1">
+
+                    
+                        <label class="col-form-label">IP-адрес</label>
+                        <input type="text" name="LIBFPTR_SETTING_IPADDRESS" placeholder="192.168.1.10" size="18" asp-for="LIBFPTR_SETTING_IPADDRESS" />
+                        <label class="col-form-label mx-3 h5"> : </label>
+                        <input type="text" name="LIBFPTR_SETTING_IPPORT " placeholder="5005" size="18" asp-for="LIBFPTR_SETTING_IPPORT " />
+                    
+                </div>
+            </div>
+        </div>
+        <div class="py-1">
+            <div class="py-2">
+                    <div class="container-xl">
+                        <button type-="submit" class="btn btn-outline-dark"> Применить настройки </button>
+                        <label type="text" name="userName" size="18">@Model.Connection_status</</label>
+                    </div>
+            </div>
+        </div>
+    <div class="px-1">Версия драйвера - @Model.Version_driver</div>
 </div>
-    <div class="py-2 border border-secondary ">
-        <div class="py-2">
-        Параметры подключения к ККТ
-            <div class="container-xl">
-                <label class="col-form-label">Канал связи:</label>
-                <select class="Element" id="selectID">
-
-                <option value=”GR”>COM / VCOM</option>
-                <option value=”YE”>TCP / IP</option>
-
-            </select>
-        </div>
-            <div class="container-xl d-inline-block">
-                <label class="col-form-label">COM порт:</label>
-                <p class="Element"><input type="text" name="userName" placeholder="COM 1" size="18" /></p>
-                <select class="Element" id="selectID">
-
-                <option value=”GR”>1 БОД</option>
-                <option value=”YE”>2 БОД</option>
-
-            </select>
-        </div>
-
-            <div class="container-xl">
-                <label class="col-form-label">IP-адрес</label>
-            <p class="Element"><input type="text" name="userName" placeholder="192.168.1.10" size="18" /></p>
-                <label class="col-form-label"> : </label>
-            <p class="Element"><input type="text" name="userName" placeholder="5005" size="18" /></p>
-        </div>
-
-            <div class="container-xl">
-                <label class="col-form-label">Канал до ОФД</label>
-
-                <select class="Element" id="selectID">
-
-                <option value=”GR”>Нет</option>
-                <option value=”YE”>Автоматически</option>
-                </select>
-        </div>
-    </div>
-    </div>
-    <div class="py-1 border border-secondary">
-        <div class="py-2">
-        Связь
-            <div class="container-xl">
-                    <button type-="submit" class="btn btn-outline-dark"> проверить связь </button>
-            <p class="py-3" style="padding-left:10px"><input type="text" name="userName" placeholder=@Model.Connection_status size="18" /></p>
-        </div>
-    </div>
-    </div>
-    <div>Версия драйвера - @Model.Version_driver</div>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 </form>
